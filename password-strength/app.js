@@ -1,74 +1,58 @@
 
-function PasswordStrength(password) {
+class AbstractBaseRule extends Error{
+    _handle(password) {
+        if (this.check(password)) {
+           return true;
+        }
+    }
 
-    let check = new checkingPasswords(password)
-
-    return check.isDigit
-    && check.isLength
-    && check.isLowerCharacter
-    && check.isRepeatMoreThanTwice
-    && check.isSequencesOfThree
-    && check.isUpperCharacter
-    && check.isSpecialCharacter
-
+    check(password) {
+        throw new Error('Abstract non-implemented method');
+    }
 }
 
-let checkingPasswords = class {
-    constructor(password) {
-        this.password = password;
+class HasLowerCase extends AbstractBaseRule {
+    check(password) {
+        return /[a-z]/.test(password)
     }
-    isLowerCharacter() {
+}
 
-        for (let i = 0; i < this.password.length; i++) {
-            if (this.password.charCodeAt(i) >= 97 && this.password.charCodeAt(i) <= 122) return true;
-        }
-        return false;
+class HasUpperCase extends AbstractBaseRule {
+    check(password) {
+        return /[A-Z]/.test(password)
     }
-    isUpperCharacter() {
+}
 
-        for (let i = 0; i < this.password.length; i++) {
-            if (this.password.charCodeAt(i) >= 65 && his.ptassword.charCodeAt(i) <= 90) return true;
-        }
-        return false;
+class HasDigit extends AbstractBaseRule {
+    check(password) {
+        let pass = /\d/
+        return pass.test(password)
     }
-    isDigit() {
+}
 
-        for (let i = 0; i < this.password.length; i++) {
-            if (this.password.charCodeAt(i) >= 49 && this.password.charCodeAt(i) <= 57) return true;
-        }
-        return false;
+class HasLength extends AbstractBaseRule {
+    check(password) {
+        return password.length>=8;
     }
-    isSpecialCharacter() {
+}
 
-        for (let i = 0; i < this.password.length; i++) {
-            if (this.password.charCodeAt(i) >= 33 && this.password.charCodeAt(i) <= 45
-                || this.password.charCodeAt(i) == 63 || this.password.charCodeAt(i) == 64) return true;
-        }
-        return false;
+class HasSpecialCharacter extends AbstractBaseRule {
+    check(password) {
+        let pass = /[@$!%*?&]/
+        return pass.test(password)
     }
-    isLength() {
+}
 
-        return this.password.length >= 8;
+class HasRepeatMoreThanTwice extends AbstractBaseRule {
+    check(password) {
+        let pass = /([a-zA-Z0-9])\1{2,}/
+        return pass.test(password)
     }
-    isRepeatMoreThanTwice() {
+}
 
-        let mone = 0;
-    
-        for (let i = 0; i < this.password.length; i++) {
-            for (let j = i + 1; j < this.password.length - 1; j++) {
-                if (this.password[i] == this.password[j]) mone++;
-            }
-            if (mone > 2) return false;
-            mone = 0;
-        }
-        return true;
+class HasSequencesOfThree extends AbstractBaseRule {
+    check(password) {
+        let pass=/([a-zA-Z0-9]{3})/
+        return pass.test(password)
     }
-    isSequencesOfThree() {
-
-        for (let i = 0; i < this.password.length - 2; i++) {
-            if (this.password.charCodeAt(i) == this.password.charCodeAt(i + 1) - 1 && this.password.charCodeAt(i) == password.charCodeAt(i + 2) - 2) return false;
-        }
-        return true;
-    }
-    
-};
+}
