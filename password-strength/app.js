@@ -1,71 +1,74 @@
 
 function PasswordStrength(password) {
 
-    if (isLowerCharacter(password) && isUpperCharacter(password)
-        && isDigit(password) && isSpecialCharacter(password)
-        && isLength(password) && isRepeatMoreThanTwice(password)
-        && isSequencesOfThree(password))
-        return true;
-    return false;
+    let check = new checkingPasswords(password)
+
+    return check.isDigit
+    && check.isLength
+    && check.isLowerCharacter
+    && check.isRepeatMoreThanTwice
+    && check.isSequencesOfThree
+    && check.isUpperCharacter
+    && check.isSpecialCharacter
 
 }
 
-function isLowerCharacter(password) {
-
-    for (let i = 0; i < password.length; i++) {
-        if (password.charCodeAt(i) >= 97 && password.charCodeAt(i) <= 122) return true;
+let checkingPasswords = class {
+    constructor(password) {
+        this.password = password;
     }
-    return false;
-}
+    isLowerCharacter() {
 
-function isUpperCharacter(password) {
-
-    for (let i = 0; i < password.length; i++) {
-        if (password.charCodeAt(i) >= 65 && password.charCodeAt(i) <= 90) return true;
-    }
-    return false;
-}
-
-function isDigit(password) {
-
-    for (let i = 0; i < password.length; i++) {
-        if (password.charCodeAt(i) >= 49 && password.charCodeAt(i) <= 57) return true;
-    }
-    return false;
-}
-
-function isSpecialCharacter(password) {
-
-    for (let i = 0; i < password.length; i++) {
-        if (password.charCodeAt(i) >= 33 && password.charCodeAt(i) <= 45
-            || password.charCodeAt(i) == 63 || password.charCodeAt(i) == 64) return true;
-    }
-    return false;
-}
-
-function isLength(password) {
-
-    return password.length >= 8;
-}
-
-function isRepeatMoreThanTwice(password) {
-
-    let mone = 0;
-
-    for (let i = 0; i < password.length; i++) {
-        for (let j = i + 1; j < password.length - 1; j++) {
-            if (password[i] == password[j]) mone++;
+        for (let i = 0; i < this.password.length; i++) {
+            if (this.password.charCodeAt(i) >= 97 && this.password.charCodeAt(i) <= 122) return true;
         }
-        if (mone > 2) return false;
-        mone = 0;
+        return false;
     }
-    return true;
-}
+    isUpperCharacter() {
 
-function isSequencesOfThree(password) {
-
-    for (let i = 0; i < password.length - 2; i++) {
-        if (password.charCodeAt(i) == password.charCodeAt(i + 1) - 1 && password.charCodeAt(i) == password.charCodeAt(i + 2) - 2) return false;
+        for (let i = 0; i < this.password.length; i++) {
+            if (this.password.charCodeAt(i) >= 65 && his.ptassword.charCodeAt(i) <= 90) return true;
+        }
+        return false;
     }
-    return true;
-}
+    isDigit() {
+
+        for (let i = 0; i < this.password.length; i++) {
+            if (this.password.charCodeAt(i) >= 49 && this.password.charCodeAt(i) <= 57) return true;
+        }
+        return false;
+    }
+    isSpecialCharacter() {
+
+        for (let i = 0; i < this.password.length; i++) {
+            if (this.password.charCodeAt(i) >= 33 && this.password.charCodeAt(i) <= 45
+                || this.password.charCodeAt(i) == 63 || this.password.charCodeAt(i) == 64) return true;
+        }
+        return false;
+    }
+    isLength() {
+
+        return this.password.length >= 8;
+    }
+    isRepeatMoreThanTwice() {
+
+        let mone = 0;
+    
+        for (let i = 0; i < this.password.length; i++) {
+            for (let j = i + 1; j < this.password.length - 1; j++) {
+                if (this.password[i] == this.password[j]) mone++;
+            }
+            if (mone > 2) return false;
+            mone = 0;
+        }
+        return true;
+    }
+    isSequencesOfThree() {
+
+        for (let i = 0; i < this.password.length - 2; i++) {
+            if (this.password.charCodeAt(i) == this.password.charCodeAt(i + 1) - 1 && this.password.charCodeAt(i) == password.charCodeAt(i + 2) - 2) return false;
+        }
+        return true;
+    }
+    
+};

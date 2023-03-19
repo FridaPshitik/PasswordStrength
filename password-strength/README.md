@@ -1,4 +1,4 @@
-Password Strength Checker
+# Password Strength Checker
 
 This program checks the strength of a given password according to the following criteria:
 
@@ -40,10 +40,6 @@ Contributions to this project are welcome! If you would like to contribute, plea
 - Submit a pull request with your changes and a description of what you've done.
 
 If you have any questions or comments, please feel free to contact the project owner at FridaP@skyvar.co.il or through the GitHub repository.
-
-## License
-
-This project is licensed under the MIT License - see the LICENSE file for details.
 
 ## Credits
 

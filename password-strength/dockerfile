@@ -1,8 +1,6 @@
 
 FROM node:16.19.1-buster
 
-WORKDIR /password-strength
-
 COPY ./app.js .
 
 CMD ["node", "app.js"]
