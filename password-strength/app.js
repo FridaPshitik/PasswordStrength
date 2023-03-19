@@ -69,4 +69,3 @@ function isSequencesOfThree(password) {
     }
     return true;
 }
-
