@@ -30,7 +30,7 @@ Deploy a simple `http` server with two endpoints:
 1.  An endpoint that appends a `json` payload to a local file.
 2.  An endpoint that returns the last 10 payloads from the persisted file.
 
-### 2. [Typer](https://typer.tiangolo.com/)
+### 2. [Typer](https://typer.tiangolo.com/) *(Assigned to @MiriamRotenshtein)*
 
 Create a simple `cli` tool with two commands:
 
@@ -95,7 +95,7 @@ Write a tool that when provided a password, it will return `true` if it passes t
 6.  A character cannot be repeated more than twice.
 7.  No sequences of 3 consecutive characters *(i.e. `abc`, `xyz`, `123`)*.
 
-### 10. [K3S](https://k3s.io/)
+### 10. [K3S](https://k3s.io/) *(Assigned to @chanaSlumianski)*
 
 Write a short Markdown document describing `k3s`:
 
